@@ -1,5 +1,6 @@
 import select from '@inquirer/select';
 import semConexao from './controllers/semConexão.js'
+import lentidao from './controllers/lentidaoController.js'
 
 const perguntas =  await select({
     message: 'Selecine uma opção',
@@ -22,10 +23,10 @@ const perguntas =  await select({
 function question(resposta) {
     switch (resposta) {
         case '1':
-            
             semConexao()
             break;
         case '2':
+          lentidao()
             break;
         case '3':
             break;
