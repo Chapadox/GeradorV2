@@ -9,9 +9,10 @@ const __dirname = path.dirname(__filename);
 function addAoRelato(mensagem){fs.appendFileSync(path.join(__dirname, '../relatos/relato.txt'), mensagem)}
 
 async function perguntas() {
+    const data = new Date()
     addAoRelato('CLIENTE INFORMA ESTAR SEM CONEXÃO \n');
     const perguntas = [
-        {message: 'PROBLEMA TEVE INICIO: ', default: 'SIM' },
+        {message: 'PROBLEMA TEVE INICIO: ', default: `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()} ` },
         {message: 'OS EQUIPAMENTOS FORAM REINICIADOS: ', default: 'SIM' },
         {message: 'APRESENTA LED LOS: ', default: 'SIM' },
         {message: 'POSSUI CONEXÃO CABEADA: ', default: 'SIM'},

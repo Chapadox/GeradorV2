@@ -27,7 +27,7 @@ async function perguntas() {
 
       addAoRelato(armazenarPergs + `${res.toUpperCase()}\n`);  
     }
-    newPerg();
+   await newPerg();
 }
 
 
@@ -55,7 +55,7 @@ async function newPerg() {
                   const pergs = await input(arrAcessoAoequipamentoPerg[i]);
                   addAoRelato(arrAcessoAoequipamentoPerg[i].message + `${pergs.toUpperCase()}\n`);      
             }
-        normalizouAcesso()
+        await normalizouAcesso()
         } else {
             addAoRelato('SEM ACESSO AO EQUIPAMENTO \nIP:');
             const semAcessoAoequi = await input({message: 'IP: '});
