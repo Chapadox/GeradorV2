@@ -4,6 +4,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import geradorDeDescrição from './problema.js';
 import select from '@inquirer/select';
+import menu from '../menu.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,6 +46,7 @@ const lig10RelatoFinal = [{message: '\nATT: '}, {message: 'TELEFONE: '}, {messag
     await percorrerPergs(lig10RelatoFinal);
     addAoRelato('CIENTE DO PRAZO\n');
   }
+  await menu();
 }
 
 export default {

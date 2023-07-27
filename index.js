@@ -1,7 +1,7 @@
 import select from '@inquirer/select';
 import controllerEmpresa from './controllers/empresas.js';
 
-const empresa = await select({
+const empresa = {
   message: 'Selecione uma empresa',
   choices: [
     {
@@ -69,14 +69,16 @@ const empresa = await select({
       value: '16'
     }
   ]
-})
+}
 
-async function empresaSelecione(empresa) {
-switch(empresa) {
+async function empresaSelecione() {
+const empresa2 = await select(empresa)
+switch(empresa2) {
     case '8':
-    controllerEmpresa.lig10()
+   await controllerEmpresa.lig10()
   }
 }
 
-empresaSelecione(empresa)
+export default empresaSelecione;
+
 // DESTR00
