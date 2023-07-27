@@ -22,17 +22,19 @@ async function percorrerPergs(pergs) {
 
 
 async function lig10() {
-console.log('LIG10')
-addAoRelato('*LIG10*\n');
+console.log('LIG10');
 const lig10 = [
   {message: 'QUEM LIGOU: '},
   {message: 'CLIENTE: '},
   {message: 'CPF: '},
 ]
 
-const lig10RelatoFinal = [{message: 'ATT: '}, {message: 'TELEFONE: '}, {message: 'CONTRATO BLOQUEADO: ', default: 'SIM/NÃO'}, {message: 'MELHOR HORARIO PARA CONTATO: '}, {message: 'ENDEREÇO: '}]
+const lig10RelatoFinal = [{message: '\nATT: '}, {message: 'TELEFONE: '}, {message: 'CONTRATO BLOQUEADO: ', default: 'SIM/NÃO'}, {message: 'MELHOR HORARIO PARA CONTATO: '}, {message: 'ENDEREÇO: '}]
+  const protocol = await input({message: 'Digite O Protocolo da Ligação: '})
+  
+  addAoRelato(`*LIG10*${protocol}\n`)
   await percorrerPergs(lig10);
-  addAoRelato('DESCRIÇÃO:');
+  addAoRelato('DESCRIÇÃO: ');
   console.log('Descrição: ')
 
   const perg = await select({message: 'Deseja usar o criador de relatos ?', choices: [{value: 'Sim'}, {value: 'Não'}]})
