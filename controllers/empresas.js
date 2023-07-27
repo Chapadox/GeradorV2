@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import geradorDeDescrição from './problema.js';
+import select from '@inquirer/select';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,6 +11,15 @@ const __dirname = path.dirname(__filename);
 // Função para adicionar ao relato
 function addAoRelato (mensagem) {fs.appendFileSync(path.join(__dirname, '../relatos/relatoLentidao.txt'), mensagem)};
 //
+
+async function percorrerPergs(pergs) {
+    for (let i = 0; i < pergs.length; i++) {
+      const res = await input(pergs[i]);
+      const armazenarPergs = pergs[i].message
+   addAoRelato(armazenarPergs + res + '\n');
+  }
+}
+
 
 async function lig10() {
 console.log('LIG10')
@@ -20,20 +30,18 @@ const lig10 = [
   {message: 'CPF: '},
 ]
 
-    for (let i = 0; i < lig10.length; i++) {
-      const res = await input(lig10[i]);
-      const armazenarPergs = lig10[i].message
-   addAoRelato(armazenarPergs + res + '\n');
-  }
-  
+const lig10RelatoFinal = [{message: 'ATT: '}, {message: 'TELEFONE: '}, {message: 'CONTRATO BLOQUEADO: ', default: 'SIM/NÃO'}, {message: 'MELHOR HORARIO PARA CONTATO: '}, {message: 'ENDEREÇO: '}]
+  await percorrerPergs(lig10);
   addAoRelato('DESCRIÇÃO:');
   console.log('Descrição: ')
-  const perg = await input({message: 'Deseja usar o criador de relatos ?'});
-  if(perg == 'sim') {
-    const desc = await geradorDeDescrição();
-    console.log('salve')
+
+  const perg = await select({message: 'Deseja usar o criador de relatos ?', choices: [{value: 'Sim'}, {value: 'Não'}]})
+  if(perg == 'Sim') {
+   await geradorDeDescrição();
+   await percorrerPergs(lig10RelatoFinal);
   } else {
-    
+    await percorrerPergs(lig10RelatoFinal);
+    addAoRelato('CIENTE DO PRAZO\n');
   }
 }
 

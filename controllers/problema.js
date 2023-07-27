@@ -24,13 +24,13 @@ const perguntas = await select({
 
 switch (perguntas) {
         case '1':
-            semConexao()
+          await  semConexao()
             break;
         case '2':
           await lentidao()
             break;
         case '3':
-          oscilacao()
+          await oscilacao()
             break;
     }
 }
