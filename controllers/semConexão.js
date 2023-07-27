@@ -8,6 +8,14 @@ const __dirname = path.dirname(__filename);
 
 function addAoRelato(mensagem){fs.appendFileSync(path.join(__dirname, '../relatos/relato.txt'), mensagem)}
 
+async function percorrerPergs(perguntas){
+   for(let i = 0; i < perguntas.length; i++) {      
+        const res = await input(perguntas[i]);
+        const replicaArr = perguntas[i].message 
+        addAoRelato(replicaArr + `${res.toUpperCase()}\n`);
+    }
+} 
+
 async function perguntas() {
     const data = new Date()
     addAoRelato('CLIENTE INFORMA ESTAR SEM CONEXÃO \n');
@@ -22,12 +30,7 @@ async function perguntas() {
         {message: 'DIGITE O COMPLEMENTO DO SEU RELATO: ', },
         {message: 'QUAL MELHOR DIA/HORARIO PARA VISITA TECNICA: '},
     ]
-
-   for(let i = 0; i < perguntas.length; i++) {      
-        const res = await input(perguntas[i]);
-        const replicaArr = perguntas[i].message 
-        addAoRelato(replicaArr + `${res.toUpperCase()}\n`);
-    }
+    await percorrerPergs(perguntas);
     addAoRelato('CIENTE DO PRAZO. \n');
 };
 
